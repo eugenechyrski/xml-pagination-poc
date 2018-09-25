@@ -37,4 +37,10 @@ public class IOUtils {
         ByteBuffer byteBuffer = Charsets.UTF_8.encode(charBuffer);
         return Arrays.copyOfRange(byteBuffer.array(), byteBuffer.position(), byteBuffer.limit());
     }
+
+    public static byte[] toBytes(char[] chars, int start, int length) {
+        CharBuffer charBuffer = CharBuffer.wrap(chars, start, length);
+        ByteBuffer byteBuffer = Charsets.UTF_8.encode(charBuffer);
+        return Arrays.copyOfRange(byteBuffer.array(), byteBuffer.position(), byteBuffer.limit());
+    }
 }

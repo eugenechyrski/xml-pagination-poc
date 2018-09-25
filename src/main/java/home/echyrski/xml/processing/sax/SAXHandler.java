@@ -6,7 +6,6 @@ import java.io.UncheckedIOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.Arrays;
 import java.util.Stack;
 
 import org.slf4j.Logger;
@@ -74,9 +73,8 @@ public final class SAXHandler extends DefaultHandler2 {
     public void characters(char ch[], int start, int length) {
         processedCharacters += length;
         if (elements.size() > 1) {
-            char[] text = Arrays.copyOfRange(ch, start, start + length);
-            byte[] bytes = IOUtils.toBytes(text);
             if (baos != null) {
+                byte[] bytes = IOUtils.toBytes(ch,start,length);
                 try {
                     baos.write(bytes);
                 } catch (IOException e) {
